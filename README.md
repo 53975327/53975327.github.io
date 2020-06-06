@@ -1,7 +1,7 @@
 # 欢迎！这是我对python中 类与对象的认识
 ##目录
 ================
-* [1. 类的定义](#11-类的定义)
+* [1.3 aaa](#13-aaa)
 
 ### 1.1类的定义？
 类的实质是一种引用数据类型，就像基本数据类型int，double......等一样，只不过类要相对复杂一些因为它的本质是数据类型，而不是数据，所以不存在于内存中，不能被直接操作，只有被实例化为对象时，才会变得可操作。
@@ -25,6 +25,29 @@ class person:
 举个例子：你定义了一个类 person a(15,"帅哥")，但你发现了吗，你并没用输入那个self。因为在这里，self其实就是你定义的a，它会自动帮你输入。
 这个__init__你可以理解成是c++中函数的构造函数，而self.age等就相当于在定义类时，自动帮你申请了两个新的变量给这个类，他们的名字分别叫self.age和self.name(a.age,a.name)
 在这个类中的成员函数每当需要用到这些数据（name,age）的时候，就需要在函数的参数表中加入self，代表对自身数据的引用。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###1.3 aaa
+asdsajheowr
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
