@@ -12,7 +12,7 @@
 比如 person类中有年龄，我们就需要专门声明int age
 而在python中是不需要的，这个会在我们的内置函数__init__中自动定义好
 ```markdown
-**class person:
+class person:
   def __init__(self,age,name)
     self.age=age       /////  self.age就是你的类中的数据成员，他的名字叫"age"
     self.name=name
