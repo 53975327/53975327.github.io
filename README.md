@@ -8,8 +8,13 @@
  * [2.2 有关self](#22-有关self)
 # 三、类的封装性
  * [3 有关对象的属性](#3-有关对象的属性)
-#四、类变量和实例变量
+# 四、类变量和实例变量
 * [4 类变量与实例变量](#4-类变量与实例变量)
+# 五、类之间的关系
+* [5.1 继承](#51-继承)
+* [5.2 多态](#52-多态)
+# 六、对课程的建议
+* [6、对课程的建议](#6-对课程的建议)
 ## 一、什么是类？
 ### 1.1 类
 --------------------
@@ -163,11 +168,90 @@ a.name xiaohong
 b.age: 0
 b.name xiaoming
 ```
-在python3中，如果你单独对某一个类对象改变了他的类变量，这个<font color=#FF0000 >类变量</font>就会变成类对象的<font color=#FF0000 >实例变量</font>，而其他的类中的类变量并不会发生改变。
+在python3中，如果你单独对某一个类对象改变了他的类变量，这个<strong>类变量</strong>就会变成类对象的<strong>实例变量</strong>，而其他的类中的类变量并不会发生改变。
 这是一个初学者很容易跳进去的坑（因为我跳过很多次 emm......)
 所以当类中存在类变量的时候（特别是你希望他以静态变量的形式存在时）一定要注意对类变量进行改变时是否是通过类对象进行改变。
 
+##五、继承与多态
+### 5.1 继承
+---------------------------
+先看下面一段代码
+```python
+class person(object):
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+      
+class student(person):
+  def __init__(self, name, age, score):
+    super(student, self).__init__(name, age)
+    self.score=score  
 
 
+def main():
+  a=student('xiaolan',19,96)
+  print('a.age:', a.age)
+  print('a.name:',a.name)
+  print('a.score:', a.score)
 
+if __name__=='__main__':
+  main()
+ ```
+ 这里要介绍一下super(,)._init_()函数
+ 这个函数是专门用来对父类进行初始化的，也就是说你在定义student类的对象时，在内部也要对person类的数据进行初始化
+ 继承的方式很简单，直接在类名字后面加上括号，在括号里面加入父类即可，不像c++中那样复杂。可以对父类中的所有数据进行使用。
+ 
+ ### 5.2 多态
+ -----------------------
+ 子类在继承了父类的方法后，可以对父类已有的方法给出新的实现版本，这个动作称之为方法<strong>重写</strong>。通过方法重写我们可以让父类的同一个行为在子类中拥有不同的实现版本，当我们调用这个经过子类重写的方法时，不同的子类对象会表现出不同的行为，这个就是<strong>多态</strong>
+ ```python
+ class Person(object):
+    def __init__(self, name):
+        self.name = name
+    def whoAmI(self):
+        print('I am a Person, my name is %s' % self.name)
+
+class Student(object):
+  def __init__(self, name):
+    self.name = name
+
+  def whoAmI(self):
+    print('I am a Student, my name is %s' % self.name)
+
+class Teacher(object):
+  def __init__(self, name):
+    self.name = name
+
+  def whoAmI(self):
+    print('I am a Teacher, my name is %s' % self.name)
+
+class Worker(object):
+  def __init__(self, name):
+    self.name = name
+
+  def whoAmI(self):
+    print('I am a Worker, my name is %s' % self.name)
+
+person=[Student("小明"),Teacher("大明"),Worker('老明')]
+for a in person:
+  a.whoAmI()
+  ```
+  输出的结果是
+  ```markdown
+  I am a Student, my name is 小明
+I am a Teacher, my name is 大明
+I am a Worker, my name is 老明
+```
+  Student、Teacher、Worker同时继承了Person类，当调用名字相同的函数时，却有着不同的表现形式，这就是类的多态
+  
+  
+ 
+ # 六关于对课程的建议
+ ### 6 对课程的建议
+ --------------------
+ 感谢老师这一学期的辛勤付出，虽然我才刚刚大一，编程了解的也不够深入，但老师讲课还是能够听懂（虽然可能我觉得自己是个半吊子）
+ 我觉得这学期的选修课收获很多，尤其是在编程这一方面，对编程有了更深的认识，同时也在编程的规范上进了一步。
+ 如果提什么建议的话，我觉得老师上课一次干货太多了，没次下来要消化很久，久了不用又会有一点忘，很多时候得下来重新看PPT才能跟得上节奏（可能是课时太少了，也能理解）
+ 总之，感谢老师这学期的辛勤付出，祝老师新的一学年在各方面都能更上一层楼！
+  
 
